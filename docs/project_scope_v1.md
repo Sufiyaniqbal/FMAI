@@ -20,3 +20,10 @@ Version 1 will NOT:
 - Analyze schema or scripts
 - Use live production data
 
+## Example Prompts
+
+1. Show total invoice amount
+2. Show total sales by customer
+3. Show sales by month
+4. Show top 5 customers by revenue
+5. Show average invoice amount
