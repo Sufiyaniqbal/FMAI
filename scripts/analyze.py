@@ -15,11 +15,24 @@ total_revenue = invoices['Amount'].sum()
 
 revenue_per_customer = invoices.groupby('CustomerID')['Amount'].sum()
 
-customer_report = customers.merge(revenue_per_customer.reset_index(), left_on='CustomerID', right_on='CustomerID', how='left')
-customer_report.rename(columns={'Amount': 'TotalRevenue'}, inplace=True)
+customer_report = customers.merge(revenue_per_customer.reset_index(), on='CustomerID', how='left').rename(columns={'Amount': 'TotalRevenue'})
 
-report_file = os.path.join(report_folder,'customer_report.csv')
-customer_report.to_csv(report_file,index=False)
+main_report_file = os.path.join(report_folder,'customer_report.csv')
+customer_report.to_csv(main_report_file,index=False)
+
+top_n = 5
+top_customers = customer_report.nlargest(top_n,'TotalRevenue')
+print(top_customers)
+top_customers_file = os.path.join(report_folder,f'top_{top_n}_customers.csv')
+top_customers.to_csv(top_customers_file,index=False)
+
+revenue_by_country = customer_report.groupby('Country')['TotalRevenue'].sum().reset_index()
+country_report_file = os.path.join(report_folder,'revenue_by_country.csv')
+revenue_by_country.to_csv(country_report_file,index=False)
+
+no_revenue_customer = customer_report[customer_report['TotalRevenue'].isna()]
+no_revenue_file = os.path.join(report_folder,'no_revenue_customer.csv')
+no_revenue_customer.to_csv(no_revenue_file,index=False)
 
 print("----- Business Summary -----")
 print(f"Total Customers: {total_customers}")
@@ -35,4 +48,8 @@ print(f"ID: {top_customer_id}")
 print(f"Name: {top_customer_name}")
 print(f"Revenue: {top_customer_revenue}")
 
-print(f"\nReport saved to: {report_file}")
+print("\nReports saved:")
+print(f"- Main Customer Report: {main_report_file}")
+print(f"- Top {top_n} Customers: {top_customers_file}")
+print(f"- Revenue by Country: {country_report_file}")
+print(f"- Customers with No Revenue: {no_revenue_file}")
