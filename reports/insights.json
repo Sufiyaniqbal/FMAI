@@ -1,0 +1,44 @@
+{
+    "total_customers": 5,
+    "total_revenue": 7050.0,
+    "average_revenue_per_customer": 1410.0,
+    "top_customers": [
+        {
+            "CustomerID": 5,
+            "Name": "Eva White",
+            "Country": "UAE",
+            "TotalRevenue": 1800
+        },
+        {
+            "CustomerID": 2,
+            "Name": "Bob Johnson",
+            "Country": "UAE",
+            "TotalRevenue": 1600
+        },
+        {
+            "CustomerID": 4,
+            "Name": "David Lee",
+            "Country": "UAE",
+            "TotalRevenue": 1450
+        },
+        {
+            "CustomerID": 3,
+            "Name": "Charlie Brown",
+            "Country": "UAE",
+            "TotalRevenue": 1400
+        },
+        {
+            "CustomerID": 1,
+            "Name": "Alice Smith",
+            "Country": "UAE",
+            "TotalRevenue": 800
+        }
+    ],
+    "top_customers_contribution_pct": 100.0,
+    "revenue_by_country": [
+        {
+            "Country": "UAE",
+            "TotalRevenue": 7050
+        }
+    ]
+}
